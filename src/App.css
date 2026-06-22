@@ -1,0 +1,60 @@
+:root {
+  --cyber-blue: #00f2fe;
+  --bg-card: #1e293b;
+  --border-blue: #1f3a60;
+  --cyber-green: #05ffc5;
+  --cyber-amber: #ffb800;
+}
+
+.app-container { min-height: 100vh; background: #0b1329; color: white; font-family: sans-serif; }
+
+/* Navbar */
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: #0f172a; border-bottom: 1px solid var(--border-blue); }
+.navbar-left { display: flex; align-items: center; gap: 20px; }
+.language-switcher button { background: transparent; border: 1px solid var(--border-blue); color: white; padding: 5px 8px; margin-inline-start: 8px; cursor: pointer; border-radius: 4px; }
+.language-switcher button.active { background: var(--cyber-blue); color: #000; border-color: var(--cyber-blue); }
+.navbar-right { display: flex; align-items: center; gap: 25px; }
+
+/* Vehicle Selector & Slider */
+.vehicle-selector { margin-top: 20px; }
+
+.slider-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 20px;
+  background: #0f172a;
+  border-top: 1px solid var(--border-blue);
+  border-bottom: 1px solid var(--border-blue);
+  scrollbar-width: none; /* إخفاء شريط التمرير في Firefox */
+}
+
+.slider-container::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+.brand-card {
+  flex: 0 0 auto; /* هذا هو السر لمنع الانضغاط */
+  padding: 15px 30px;
+  background: var(--bg-card);
+  border: 1px solid var(--cyber-blue);
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.brand-card.active, .brand-card:hover {
+  background: var(--cyber-blue);
+  color: #000;
+  transform: scale(1.05);
+}
+
+/* Steps */
+.selector-steps { margin-top: 30px; text-align: center; padding: 20px; border-top: 1px solid var(--border-blue); }
+.step-content { margin-top: 20px; }
+.step-content button { margin: 5px; padding: 12px 24px; background: var(--cyber-blue); border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+.step-content button:hover { opacity: 0.8; }
+
+/* Catalog */
+.catalog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
+.product-card { background: var(--bg-card); border: 1px solid var(--border-blue); padding: 20px; border-radius: 16px; text-align: center; }

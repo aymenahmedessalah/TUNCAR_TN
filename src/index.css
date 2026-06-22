@@ -1,0 +1,31 @@
+/* src/index.css */
+:root {
+  --primary-dark: #0b1329;
+  --bg-main: #030712;
+  --cyber-blue: #00f2fe;
+  --cyber-green: #05ffc5;
+  --cyber-amber: #ffb800;
+  --text-light: #f3f4f6;
+  --border-blue: #1f3a60;
+  --bg-card: #0f172a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-light);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+/* تنسيق عام لكل الأزرار */
+button {
+  cursor: pointer;
+  font-family: inherit;
+}

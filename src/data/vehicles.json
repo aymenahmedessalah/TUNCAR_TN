@@ -1,0 +1,26 @@
+{
+  "Volkswagen": {
+    "models": {
+      "Golf": {
+        "variants": ["GTi", "TDI", "R-Line"],
+        "years": ["2023", "2024", "2025"]
+      },
+      "Polo": {
+        "variants": ["Comfortline", "Highline"],
+        "years": ["2022", "2023", "2024"]
+      }
+    }
+  },
+  "Mercedes": {
+    "models": {
+      "A-Class": {
+        "variants": ["A200", "A250", "AMG"],
+        "years": ["2023", "2024"]
+      },
+      "C-Class": {
+        "variants": ["C200", "C300"],
+        "years": ["2024", "2025"]
+      }
+    }
+  }
+}
