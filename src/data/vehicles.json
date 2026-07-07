@@ -1,25 +1,41 @@
 {
   "Volkswagen": {
     "models": {
-      "Golf": {
-        "variants": ["GTi", "TDI", "R-Line"],
-        "years": ["2023", "2024", "2025"]
-      },
-      "Polo": {
-        "variants": ["Comfortline", "Highline"],
-        "years": ["2022", "2023", "2024"]
+      "Golf (Mk6)": {
+        "phases": [{"name": "Phase I (2008-2010)"}, {"name": "Phase II (2011-2012)"}],
+        "transmissions": ["Manual", "DSG"],
+        "variants": [
+          {"name": "1.2 TSI (CBZA)", "energy": "petrol", "phase": "Phase II (2011-2012)", "engine": "CBZA", "ecu": "MED17.5"},
+          {"name": "1.4 TSI (CAXA)", "energy": "petrol", "phase": "Phase I (2008-2010)", "engine": "CAXA", "ecu": "MED17.5"},
+          {"name": "1.6 TDI (CAYB)", "energy": "diesel", "phase": "Phase I (2008-2010)", "engine": "CAYB", "ecu": "PCR2.1"},
+          {"name": "2.0 TDI (CBAA)", "energy": "diesel", "phase": "Phase I (2008-2010)", "engine": "CBAA", "ecu": "EDC17"},
+          {"name": "2.0 TSI (CCZB)", "energy": "petrol", "phase": "Phase II (2011-2012)", "engine": "CCZB", "ecu": "MED17.5"},
+          {"name": "1.6 MPI (BSE)", "energy": "petrol", "phase": "Phase I (2008-2010)", "engine": "BSE", "ecu": "Simos 7"},
+          {"name": "2.0 TDI (CFHC)", "energy": "diesel", "phase": "Phase II (2011-2012)", "engine": "CFHC", "ecu": "EDC17C46"},
+          {"name": "1.4 TSI (CAVD)", "energy": "petrol", "phase": "Phase II (2011-2012)", "engine": "CAVD", "ecu": "MED17.5"},
+          {"name": "1.6 TDI (CAYC)", "energy": "diesel", "phase": "Phase II (2011-2012)", "engine": "CAYC", "ecu": "PCR2.1"},
+          {"name": "2.0 TDI (CBDC)", "energy": "diesel", "phase": "Phase I (2008-2010)", "engine": "CBDC", "ecu": "EDC17"}
+        ]
       }
     }
   },
-  "Mercedes": {
+  "BMW": {
     "models": {
-      "A-Class": {
-        "variants": ["A200", "A250", "AMG"],
-        "years": ["2023", "2024"]
-      },
-      "C-Class": {
-        "variants": ["C200", "C300"],
-        "years": ["2024", "2025"]
+      "Serie 3 (E90)": {
+        "phases": [{"name": "Pre-Facelift (2005-2008)"}, {"name": "Facelift (2009-2011)"}],
+        "transmissions": ["Manual", "Automatic"],
+        "variants": [
+          {"name": "318i (N43)", "energy": "petrol", "phase": "Facelift (2009-2011)", "engine": "N43B20", "ecu": "MSD81"},
+          {"name": "320i (N46)", "energy": "petrol", "phase": "Pre-Facelift (2005-2008)", "engine": "N46B20", "ecu": "MSV80"},
+          {"name": "320d (M47)", "energy": "diesel", "phase": "Pre-Facelift (2005-2008)", "engine": "M47D20", "ecu": "EDC16"},
+          {"name": "320d (N47)", "energy": "diesel", "phase": "Facelift (2009-2011)", "engine": "N47D20", "ecu": "EDC17"},
+          {"name": "325i (N52)", "energy": "petrol", "phase": "Pre-Facelift (2005-2008)", "engine": "N52B25", "ecu": "MSV70"},
+          {"name": "330i (N53)", "energy": "petrol", "phase": "Facelift (2009-2011)", "engine": "N53B30", "ecu": "MSD80"},
+          {"name": "330d (M57)", "energy": "diesel", "phase": "Pre-Facelift (2005-2008)", "engine": "M57D30", "ecu": "EDC16"},
+          {"name": "330d (N57)", "energy": "diesel", "phase": "Facelift (2009-2011)", "engine": "N57D30", "ecu": "EDC17"},
+          {"name": "335i (N54)", "energy": "petrol", "phase": "Pre-Facelift (2005-2008)", "engine": "N54B30", "ecu": "MSD80"},
+          {"name": "335d (M57)", "energy": "diesel", "phase": "Facelift (2009-2011)", "engine": "M57D30", "ecu": "EDC17"}
+        ]
       }
     }
   }

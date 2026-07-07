@@ -1,34 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
+import './Navbar.css';
 
-export default function Navbar({ setView, cartCount = 0 }: { setView: (v: string) => void, cartCount?: number }) {
+export default function Navbar({ setView, cartCount = 0 }: any) {
   const { lang, setLang } = useLanguage();
+  const [searchType, setSearchType] = useState<'text' | 'vin'>('text');
+  const t = translations[lang];
 
   return (
     <nav className="navbar">
-      <div className="navbar-left">
-        <div className="logo" onClick={() => setView('buyer')} style={{ cursor: 'pointer' }}>
-          AutoTech
+      {/* الكتلة الأولى: اللوغو */}
+      <div className="logo" onClick={() => setView('buyer')}>TUNCAR.TN</div>
+      <div className="search-container">
+        <div className="search-slot">
+          <input className="search-input" placeholder={searchType === 'text' ? t.placeholderText : t.placeholderVin} />
+          <span className="search-toggle" onClick={() => setSearchType(searchType === 'text' ? 'vin' : 'text')}>
+            {searchType === 'text' ? 'VIN' : 'TXT'}
+          </span>
         </div>
-        <div className="language-switcher">
-          <button onClick={() => setLang('fr')} className={lang === 'fr' ? 'active' : ''}>FR</button>
-          <button onClick={() => setLang('ar')} className={lang === 'ar' ? 'active' : ''}>AR</button>
-          <button onClick={() => setLang('en')} className={lang === 'en' ? 'active' : ''}>EN</button>
         </div>
-      </div>
-
+      {/* الكتلة الثانية: المحتوى الجانبي */}
       <div className="navbar-right">
-        <div className="cart-icon" onClick={() => setView('cart')} style={{ cursor: 'pointer' }}>
-          {lang === 'fr' ? 'Panier' : lang === 'ar' ? 'السلة' : 'Cart'} ({cartCount})
+        <div className="lang-tags">
+          {['ar', 'fr', 'en'].filter(c => c !== lang).map((code) => (
+            <button key={code} className="lang-tag" onClick={() => setLang(code as any)}>
+              {code.toUpperCase()}
+            </button>
+          ))}
         </div>
         
-        {/* أيقونة المستخدم (SVG) بدلاً من النص */}
-        <div className="user-icon" onClick={() => setView('profile')} style={{ cursor: 'pointer' }}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
-        </div>
+        <div onClick={() => setView('cart')}>{t.cart} ({cartCount})</div>
       </div>
     </nav>
   );

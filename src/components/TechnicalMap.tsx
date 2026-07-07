@@ -1,29 +1,30 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { PartType } from './TechnicalMapPage';
+import './TechnicalMap.css';
 
-export default function TechnicalMap({ brand, model, year }: { brand: string, model: string, year: string }) {
-  // هذا الرابط هو افتراضي، يجب أن تضع ملفات الـ SVG في مجلد public/assets/
-  const mapPath = `/assets/maps/${brand.toLowerCase()}_${model.toLowerCase()}_${year}.svg`;
+interface TechnicalMapProps {
+  activePart: PartType;
+  onPartSelect: (p: PartType) => void;
+}
+
+export default function TechnicalMap({ activePart, onPartSelect }: TechnicalMapProps) {
+  const parts: PartType[] = ['engine', 'transmission', 'suspension', 'electrique'];
 
   return (
-    <div className="technical-map-wrapper">
-      <h3>{brand} {model} - {year}</h3>
-      <div className="svg-viewer" style={{ border: '2px solid #00f2fe', padding: '20px', borderRadius: '10px' }}>
-        {/* هنا نقوم بتحميل الخريطة */}
-        <img 
-          src={mapPath} 
-          alt={`Technical diagram for ${brand} ${model}`} 
-          style={{ width: '100%', height: 'auto' }}
-          onError={(e) => {
-            e.currentTarget.src = '/assets/placeholder-map.svg'; // صورة بديلة إذا لم توجد الخريطة
-          }}
-        />
-      </div>
-      <p style={{ marginTop: '15px' }}>
-        {/* يمكنك إضافة زر للبحث عن قطع الغيار داخل الخريطة هنا */}
-        <button onClick={() => alert('تحديد القطع في الخريطة...')}>
-          استعراض قطع الغيار
-        </button>
-      </p>
+    <div className="canvas-container">
+      <img src="/maps/car-wireframe.png" alt="Car Map" className="wireframe-layer" />
+      
+      {parts.map((part) => (
+        <motion.div 
+          key={part as string}
+          className={`hotspot ${part} ${activePart === part ? 'active' : ''}`}
+          onClick={() => onPartSelect(part)}
+          whileHover={{ scale: 1.2 }}
+        >
+          {activePart === part && <div className="hotspot-pulse" />}
+        </motion.div>
+      ))}
     </div>
   );
 }

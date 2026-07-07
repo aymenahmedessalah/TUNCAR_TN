@@ -1,0 +1,109 @@
+/* الحاوية الأساسية */
+.vs-container { 
+    width: 100%;
+    max-width: 1400px; 
+    margin: 20px auto; 
+    padding: 20px; 
+    box-sizing: border-box;
+    text-align: inherit; 
+}
+
+/* الشبكة */
+.vs-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+    gap: 15px; 
+    margin-top: 20px;
+}
+
+/* البطاقة الزجاجية */
+.vs-card { 
+    padding: 20px; 
+    background: rgba(30, 41, 59, 0.4); 
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    color: #e2e8f0; 
+    border-radius: 14px; 
+    cursor: pointer; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    gap: 10px;
+    min-height: 140px; 
+}
+
+.vs-card:hover { 
+    background: rgba(14, 165, 233, 0.15); 
+    border-color: rgba(14, 165, 233, 0.5);
+    transform: translateY(-2px);
+}
+
+/* حاوية النص داخل البطاقة (الرئيسي فوق الثانوي) */
+.vs-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+}
+
+.vs-card-main-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* النص الثانوي (تحت الرئيسي) */
+.vs-card-sub-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-family: monospace;
+    text-shadow: 0 0 5px rgba(56, 189, 248, 0.5);
+}
+
+.vs-card-logo { 
+    width: 70px; 
+    height: 50px; 
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    margin-bottom: 5px;
+}
+
+/* شريط الحالة */
+.vs-status-bar { 
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 15px; 
+    margin-bottom: 40px; 
+    background: rgba(11, 19, 41, 0.6); 
+    padding: 15px; 
+    border-radius: 12px;
+}
+
+.status-text {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px;
+}
+.status-text:hover {
+    color: var(--cyber-blue);
+    text-shadow: 0 0 8px rgba(14, 165, 233, 0.8);
+}
+
+.reset-btn {
+    color: #ef4444;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-inline-start: 15px;
+}

@@ -1,75 +1,124 @@
 import React, { useState } from 'react';
-import * as vehicleData from '../data/vehicles.json'; // استخدم * as
-import TechnicalMap from './TechnicalMap';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
+import vehicleData from '../data/vehicles.json';
+import TechnicalMap from './TechnicalMap';
+import './VehicleSelector.css';
 
-export default function VehicleSelector() {
+const data = (vehicleData as any) || {};
+
+export default function VehicleSelector({ onSelect }: { onSelect: () => void }) {
   const { lang } = useLanguage();
-  const [step, setStep] = useState(1);
-  const [selection, setSelection] = useState({ brand: '', model: '', variant: '', year: '' });
+  const t = translations[lang as 'fr' | 'ar' | 'en'];
 
-  const brands = Object.keys(vehicleData);
+  const [selection, setSelection] = useState<any>({ 
+    brand: '', model: '', year: '', transmission: '', energy: '', variant: '' 
+  });
 
-  const handleBrandSelect = (brand: string) => {
-    setSelection({ brand, model: '', variant: '', year: '' });
-    setStep(2);
+  const steps = [
+    { key: 'brand', label: t.steps.brand },
+    { key: 'model', label: t.steps.model },
+    { key: 'year', label: t.steps.year },
+    { key: 'transmission', label: t.steps.transmission },
+    { key: 'energy', label: t.energyTypes.energy },
+    { key: 'variant', label: t.steps.variant }
+  ];
+
+  const isFinished = steps.every(s => selection[s.key] !== '');
+  const currentStep = steps.find(s => !selection[s.key]) || { key: 'final', label: 'Map' };
+  const currentStepIndex = steps.findIndex(s => !selection[s.key]);
+
+  const handleStepClick = (index: number) => {
+    const newState = { ...selection };
+    steps.forEach((s, i) => { if (i >= index) newState[s.key] = ''; });
+    setSelection(newState);
+  };
+
+  const getOptions = () => {
+    const { brand, model, energy, year } = selection;
+    if (currentStep.key === 'brand') return Object.keys(data || {});
+    if (!brand || !data[brand]) return [];
+    if (currentStep.key === 'model') return Object.keys(data[brand]?.models || {});
+    if (!model || !data[brand]?.models[model]) return [];
+    if (currentStep.key === 'year') return data[brand]?.models[model]?.phases?.map((p: any) => p.name) || [];
+    if (currentStep.key === 'transmission') return data[brand]?.models[model]?.transmissions || [];
+    if (currentStep.key === 'energy') return [
+      { id: 'petrol', label: t.energyTypes.petrol },
+      { id: 'diesel', label: t.energyTypes.diesel },
+      { id: 'electric', label: t.energyTypes.electric },
+      { id: 'hybrid', label: t.energyTypes.hybrid }
+    ];
+    if (currentStep.key === 'variant') {
+      return data[brand]?.models[model]?.variants?.filter((v: any) => v.energy === energy && v.phase === year) || [];
+    }
+    return [];
   };
 
   return (
-    <div className="vehicle-selector">
-      {/* 1. اختيار الماركة (السلايدر) */}
-      <div className="slider-container">
-        {brands.map(b => (
-          <button key={b} onClick={() => handleBrandSelect(b)} className={selection.brand === b ? 'active' : ''}>
-            {b}
-          </button>
-        ))}
-      </div>
-
-      {/* 2. اختيار الموديل */}
-      {step >= 2 && (
-        <div className="step-content">
-          <h3>{lang === 'fr' ? 'Modèle' : 'الموديل'}</h3>
-          {Object.keys(vehicleData[selection.brand as keyof typeof vehicleData].models).map(m => (
-            <button key={m} onClick={() => { setSelection({...selection, model: m}); setStep(3); }}>{m}</button>
+    <div className="vs-container" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+      {selection.brand && (
+        <div className="vs-status-bar">
+          {steps.map((s, i) => selection[s.key] && (
+            <div key={s.key} className="status-group">
+              <span className="status-text" onClick={() => handleStepClick(i)}>
+                {selection[s.key]}
+              </span>
+              {i < (isFinished ? steps.length - 1 : currentStepIndex - 1) && 
+                <span className="status-arrow">›</span>
+              }
+            </div>
           ))}
+          <button className="reset-btn" onClick={() => handleStepClick(0)}>{t.reset}</button>
         </div>
       )}
 
-      {/* 3. اختيار الفارينت */}
-      {step >= 3 && (
-        <div className="step-content">
-          <h3>{lang === 'fr' ? 'Variante' : 'الفارينت'}</h3>
-          {vehicleData[selection.brand as keyof typeof vehicleData].models[selection.model as keyof any].variants.map(v => (
-            <button key={v} onClick={() => { setSelection({...selection, variant: v}); setStep(4); }}>{v}</button>
-          ))}
-        </div>
-      )}
+      <AnimatePresence mode="wait">
+        {isFinished ? (
+          <motion.div key="map" className="vs-map-wrapper"><TechnicalMap {...selection} /></motion.div>
+        ) : (
+          <motion.div 
+            key="selection" 
+            initial={{ opacity: 0, x: lang === 'ar' ? 20 : -20 }} 
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0 }}
+          >
+            <h2 className="vs-instruction">{t.instruction} {currentStep.label}</h2>
+            <div className="vs-grid">
+              {getOptions().map((opt: any) => {
+                const isEnergy = currentStep.key === 'energy';
+                const labelFull = isEnergy ? opt.label : (typeof opt === 'object' ? opt.name : opt);
+                const val = isEnergy ? opt.id : labelFull;
+                
+                const match = String(labelFull).match(/(.*) \((.*)\)/);
+                const displayName = match ? match[1] : labelFull;
+                const techCode = match ? match[2] : null;
 
-      {/* 4. اختيار السنة */}
-      {step >= 4 && (
-        <div className="step-content">
-          <h3>{lang === 'fr' ? 'Année' : 'السنة'}</h3>
-          {vehicleData[selection.brand as keyof typeof vehicleData].models[selection.model as keyof any].years.map(y => (
-            <button key={y} onClick={() => { setSelection({...selection, year: y}); setStep(5); }}>{y}</button>
-          ))}
-        </div>
-      )}
-      {step === 5 && (
-        <div className="final-selection">
-          <h3>
-            {lang === 'fr' ? 'Configuration sélectionnée :' : 'السيارة المختارة:'}
-            {` ${selection.brand} ${selection.model} (${selection.year})`}
-          </h3>
-          
-          {/* المكون الذي يعرض الـ SVG الخاص بالسيارة المحددة */}
-          <TechnicalMap 
-             brand={selection.brand} 
-             model={selection.model} 
-             year={selection.year} 
-          />
-        </div>
-      )}
+                return (
+                  <button 
+                    key={val} 
+                    onClick={() => setSelection({...selection, [currentStep.key]: val})} 
+                    className="vs-card"
+                  >
+                    {currentStep.key === 'brand' && (
+                      <img src={`/logos/${displayName.toLowerCase().trim()}.svg`} alt={displayName} className="vs-card-logo" />
+                    )}
+                    
+                    <div className="vs-card-content">
+                      <span className="vs-card-main-text">{displayName}</span>
+                      {techCode && (
+                        <span className="vs-card-sub-text">
+                          {techCode}
+                        </span>
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

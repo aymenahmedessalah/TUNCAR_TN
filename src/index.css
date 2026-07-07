@@ -20,11 +20,10 @@ body {
   background-color: var(--bg-main);
   color: var(--text-light);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  direction: rtl;
+  direction: inherit; /* هنا التغيير: اجعلها ترث من الـ html */
   overflow-x: hidden;
 }
 
-/* تنسيق عام لكل الأزرار */
 button {
   cursor: pointer;
   font-family: inherit;
