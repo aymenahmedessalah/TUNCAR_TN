@@ -1,0 +1,80 @@
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.auth-card {
+    background: #1e293b;
+    padding: 40px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border: 1px solid var(--border-blue);
+}
+
+.auth-input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: #0b1329;
+    border: 1px solid var(--border-blue);
+    border-radius: 8px;
+    color: white;
+    box-sizing: border-box;
+}
+
+.auth-submit {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background: var(--cyber-blue);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #0b1329;
+}
+
+.auth-toggle {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.auth-toggle span {
+    color: var(--cyber-blue);
+    font-weight: bold;
+}
+/* تنسيق اختيار الدور */
+.role-selector {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.role-tag {
+    padding: 30px;
+    border: 2px solid #334155;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+/* ثيم الزبون (أخضر) */
+.role-tag.buyer:hover {
+    border-color: #22c55e;
+    color: #22c55e;
+}
+
+/* ثيم البائع (أرجواني) */
+.role-tag.seller:hover {
+    border-color: #a855f7;
+    color: #a855f7;
+}

@@ -1,5 +1,20 @@
 export const translations = {
   fr: {
+    // واجهة الدخول والتسجيل
+    loginTitle: "Connexion",
+    registerTitle: "Créer un compte",
+    namePlaceholder: "Nom complet",
+    emailPlaceholder: "Adresse e-mail",
+    passwordPlaceholder: "Mot de passe",
+    loginBtn: "Se connecter",
+    registerBtn: "S'inscrire",
+    noAccount: "Pas de compte ?",
+    hasAccount: "Déjà un compte ?",
+    registerLink: "Inscrivez-vous",
+    loginLink: "Connectez-vous",
+    buyer: "Client",
+    seller: "Vendeur",
+    // البحث
     placeholderText: "Chercher une pièce OEM...",
     placeholderVin: "Entrez le VIN (17 caractères requis)...",
     cart: "Panier",
@@ -9,6 +24,21 @@ export const translations = {
     instruction: 'Veuillez sélectionner:'
   },
   en: {
+    // واجهة الدخول والتسجيل
+    loginTitle: "Login",
+    registerTitle: "Register",
+    namePlaceholder: "Full Name",
+    emailPlaceholder: "Email Address",
+    passwordPlaceholder: "Password",
+    loginBtn: "Login",
+    registerBtn: "Register",
+    noAccount: "Don't have an account?",
+    hasAccount: "Already have an account?",
+    registerLink: "Register now",
+    loginLink: "Log in",
+    buyer: "Buyer",
+    seller: "Seller",
+    // البحث
     placeholderText: "Search for an OEM part...",
     placeholderVin: "Enter VIN (17 characters required)...",
     cart: "Cart",
@@ -18,6 +48,21 @@ export const translations = {
     instruction: 'Please select:'
   },
   ar: {
+    // واجهة الدخول والتسجيل
+    loginTitle: "تسجيل الدخول",
+    registerTitle: "إنشاء حساب",
+    namePlaceholder: "الاسم الكامل",
+    emailPlaceholder: "البريد الإلكتروني",
+    passwordPlaceholder: "كلمة المرور",
+    loginBtn: "دخول",
+    registerBtn: "تسجيل",
+    noAccount: "ليس لديك حساب؟",
+    hasAccount: "لديك حساب بالفعل؟",
+    registerLink: "سجل الآن",
+    loginLink: "سجل الدخول",
+    buyer: "زبون",
+    seller: "بائع",
+    // البحث
     placeholderText: "ابحث عن قطعة سيارة OEM...",
     placeholderVin: "أدخل رقم الهيكل (VIN) (17 حرفاً)...",
     cart: "السلة",
