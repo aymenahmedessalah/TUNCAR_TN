@@ -1,4 +1,4 @@
-.auth-wrapper {
+.auth-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,53 +8,146 @@
 
 .auth-card {
     background: #1e293b;
-    padding: 40px;
+    padding: 30px 40px;
     border-radius: 16px;
     width: 100%;
-    max-width: 400px;
-    text-align: center;
-    border: 1px solid var(--border-blue);
+    max-width: 450px;
+    text-align: start; /* يتكيف تلقائياً مع اليمين واليسار */
+    border: 1px solid var(--border-blue, #334155);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    transition: max-width 0.3s ease;
 }
 
-.auth-input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
+.auth-header {
+    margin-bottom: 24px;
+    text-align: inherit;
+}
+
+.auth-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 6px;
+}
+
+.auth-header p {
+    color: #94a3b8;
+    font-size: 0.85rem;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
     background: #0b1329;
-    border: 1px solid var(--border-blue);
+    border: 1px solid var(--border-blue, #334155);
     border-radius: 8px;
-    color: white;
+    padding: 12px 14px;
+    gap: 12px;
+    width: 100%;
     box-sizing: border-box;
+    position: relative;
 }
 
-.auth-submit {
+.input-group:focus-within {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+.input-icon {
+    color: #94a3b8;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.input-group input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 0.95rem;
+    width: 100%;
+    text-align: start; /* محاذاة النص تتوافق مع اتجاه اللغة */
+    direction: inherit;
+}
+
+.input-group input::placeholder {
+    color: #64748b;
+}
+
+/* تنسيق الحقول الإضافية للبائع (Vendeur) */
+.seller-extra-fields {
+    background: rgba(56, 189, 248, 0.05);
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px dashed #38bdf8;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: start; /* مرن حسب اللغة */
+}
+
+.seller-extra-fields .input-group {
+    margin-bottom: 0 !important;
+}
+
+.auth-submit-btn {
     width: 100%;
     padding: 12px;
-    margin-top: 20px;
-    background: var(--cyber-blue);
+    margin-top: 10px;
+    background: var(--cyber-blue, #38bdf8);
     border: none;
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
     color: #0b1329;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    transition: background 0.2s;
 }
 
-.auth-toggle {
+.auth-submit-btn:hover {
+    background: #0ea5e9;
+}
+
+.auth-switch {
     margin-top: 20px;
     font-size: 0.9rem;
     color: #94a3b8;
+    text-align: center;
+}
+
+.auth-switch span {
+    color: var(--cyber-blue, #38bdf8);
+    font-weight: bold;
     cursor: pointer;
 }
 
-.auth-toggle span {
-    color: var(--cyber-blue);
-    font-weight: bold;
+.auth-error {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    text-align: center;
 }
+
 /* تنسيق اختيار الدور */
 .role-selector {
     display: flex;
     gap: 20px;
     justify-content: center;
+    margin-top: 20px;
     margin-bottom: 30px;
 }
 
@@ -67,13 +160,11 @@
     text-align: center;
 }
 
-/* ثيم الزبون (أخضر) */
 .role-tag.buyer:hover {
     border-color: #22c55e;
     color: #22c55e;
 }
 
-/* ثيم البائع (أرجواني) */
 .role-tag.seller:hover {
     border-color: #a855f7;
     color: #a855f7;

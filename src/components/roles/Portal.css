@@ -1,0 +1,98 @@
+/* ==========================================
+   Portal.css - TUNCAR.TN Client Portal Node
+   ========================================== */
+
+/* الحركات الانتقالية */
+@keyframes portalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.portal-container {
+  animation: portalFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  background-color: #0b1329 !important;
+  border-radius: 1rem !important;
+  color: #f8fafc !important;
+  box-sizing: border-box !important;
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* تنسيق بانر الترحيب الخاص بالعميل */
+.portal-welcome-banner {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+  border: 1px solid #334155 !important;
+  border-radius: 1rem !important;
+  position: relative !important;
+  overflow: hidden !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.portal-welcome-banner::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important; /* تم التعديل من right إلى left ليتناسب مع اللغة العربية واتجاه الـ RTL */
+  width: 4px !important;
+  height: 100% !important;
+  background: var(--theme-color, #3b82f6) !important;
+}
+
+/* شريط تبويبات البوابة */
+.portal-tabs {
+  display: flex !important;
+  gap: 12px !important;
+  border-bottom: 1px solid #1e293b !important;
+  padding-bottom: 15px !important;
+  margin-bottom: 25px !important;
+  flex-wrap: wrap !important;
+}
+
+.portal-tab-btn {
+  background: #1e293b !important;
+  border: 1px solid #334155 !important;
+  color: #94a3b8 !important;
+  padding: 10px 20px !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.portal-tab-btn:hover {
+  border-color: var(--theme-color, #3b82f6) !important;
+  color: #ffffff !important;
+  background: rgba(59, 130, 246, 0.08) !important;
+}
+
+.portal-tab-btn.active {
+  background: var(--theme-color, #3b82f6) !important;
+  color: #060913 !important;
+  border-color: var(--theme-color, #3b82f6) !important;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.35) !important;
+  font-weight: 700 !important;
+}
+
+/* بطاقات محتوى البوابة والطلبات */
+.portal-card-box {
+  background: #1e293b !important;
+  border-radius: 12px !important;
+  border: 1px solid #334155 !important;
+  padding: 20px !important;
+  transition: all 0.3s ease !important;
+}
+
+.portal-card-box:hover {
+  border-color: var(--theme-color, #3b82f6) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+}

@@ -1,8 +1,9 @@
 export const translations = {
   fr: {
-    // واجهة الدخول والتسجيل
+    // 1. Authentification & Compte
     loginTitle: "Connexion",
     registerTitle: "Créer un compte",
+    authSubtitle: "Connectez-vous pour continuer vers le panier et gérer vos commandes",
     namePlaceholder: "Nom complet",
     emailPlaceholder: "Adresse e-mail",
     passwordPlaceholder: "Mot de passe",
@@ -14,19 +15,59 @@ export const translations = {
     loginLink: "Connectez-vous",
     buyer: "Client",
     seller: "Vendeur",
-    // البحث
+
+    // 2. Champs Professionnels (Vendeurs)
+    storeNamePlaceholder: "Nom du Magasin / Entreprise",
+    taxIdPlaceholder: "Matricule Fiscale",
+    phonePlaceholder: "Téléphone Professionnel",
+    sellerRequiredInfo: "Informations professionnelles requises",
+    selectAccountType: "Type de compte",
+
+    // 3. Recherche & Véhicules
     placeholderText: "Chercher une pièce OEM...",
     placeholderVin: "Entrez le VIN (17 caractères requis)...",
+    reset: "Réinitialiser",
+    instruction: "Veuillez sélectionner:",
+    steps: {
+      brand: "Marque",
+      model: "Modèle",
+      year: "Année",
+      transmission: "Transmission",
+      energy: "Énergie",
+      variant: "Variante"
+    },
+    energyTypes: {
+      energy: "Énergie",
+      petrol: "Essence",
+      diesel: "Diesel",
+      electric: "Électrique",
+      hybrid: "Hybride"
+    },
+
+    // 4. Panier & Commandes
     cart: "Panier",
-    steps: { brand: 'Marque', model: 'Modèle', year: 'Année', transmission: 'Transmission', energy: 'Énergie', variant: 'Variante' },
-    energyTypes: { energy: 'Énergie', petrol: 'Essence', diesel: 'Diesel', electric: 'Électrique', hybrid: 'Hybride' },
-    reset: 'Réinitialiser',
-    instruction: 'Veuillez sélectionner:'
+    cartTitle: "Mon Panier d'Achats",
+    cartEmpty: "Votre panier est vide",
+    checkoutBtn: "Passer la commande",
+    cartCountText: "articles dans le panier",
+    continueShopping: "Continuer vos achats",
+
+    // 5. Tableaux de Bord & Administration
+    sellerDashboardTitle: "🛠️ Tableau de bord Vendeur & Ateliers",
+    browseStore: "Parcourir la boutique",
+    sellerAccessError: "Désolé, ce tableau de bord est réservé aux vendeurs agréés.",
+    backToHome: "Retour à l'accueil",
+    adminTitle: "🛡️ Tableau de bord Administratif Souverain",
+    adminSubtitle: "Gestion du système, utilisateurs, permissions et contrôle général",
+    adminAccessError: "Désolé, cette page est strictement administrative et réservée aux administrateurs.",
+    emergencyAlert: "⚠️ Protocole d'urgence souverain activé avec succès !"
   },
+
   en: {
-    // واجهة الدخول والتسجيل
+    // 1. Authentication & Account
     loginTitle: "Login",
     registerTitle: "Register",
+    authSubtitle: "Sign in to continue to your cart and manage your orders",
     namePlaceholder: "Full Name",
     emailPlaceholder: "Email Address",
     passwordPlaceholder: "Password",
@@ -38,19 +79,59 @@ export const translations = {
     loginLink: "Log in",
     buyer: "Buyer",
     seller: "Seller",
-    // البحث
+
+    // 2. Professional Fields (Sellers)
+    storeNamePlaceholder: "Store / Company Name",
+    taxIdPlaceholder: "Tax ID (Matricule Fiscale)",
+    phonePlaceholder: "Professional Phone",
+    sellerRequiredInfo: "Required professional information",
+    selectAccountType: "Account Type",
+
+    // 3. Search & Vehicles
     placeholderText: "Search for an OEM part...",
     placeholderVin: "Enter VIN (17 characters required)...",
+    reset: "Reset",
+    instruction: "Please select:",
+    steps: {
+      brand: "Brand",
+      model: "Model",
+      year: "Year",
+      transmission: "Transmission",
+      energy: "Energy",
+      variant: "Variant"
+    },
+    energyTypes: {
+      energy: "Energy",
+      petrol: "Petrol",
+      diesel: "Diesel",
+      electric: "Electric",
+      hybrid: "Hybrid"
+    },
+
+    // 4. Cart & Checkout
     cart: "Cart",
-    steps: { brand: 'Brand', model: 'Model', year: 'Year', transmission: 'Transmission', energy: 'Energy', variant: 'Variant' },
-    energyTypes: { energy: 'Energy', petrol: 'Petrol', diesel: 'Diesel', electric: 'Electric', hybrid: 'Hybrid' },
-    reset: 'Reset',
-    instruction: 'Please select:'
+    cartTitle: "My Shopping Cart",
+    cartEmpty: "Your cart is empty",
+    checkoutBtn: "Proceed to Checkout",
+    cartCountText: "items in cart",
+    continueShopping: "Continue Shopping",
+
+    // 5. Dashboards & Administration
+    sellerDashboardTitle: "🛠️ Seller & Workshops Dashboard",
+    browseStore: "Browse Store",
+    sellerAccessError: "Sorry, this dashboard is restricted to approved sellers.",
+    backToHome: "Back to Home",
+    adminTitle: "🛡️ Sovereign Administrative Control Center",
+    adminSubtitle: "System management, users, permissions, and general control",
+    adminAccessError: "Sorry, this page is strictly administrative and restricted to admins.",
+    emergencyAlert: "⚠️ Sovereign emergency kill switch protocol triggered successfully!"
   },
+
   ar: {
-    // واجهة الدخول والتسجيل
+    // 1. المصادقة والحساب
     loginTitle: "تسجيل الدخول",
     registerTitle: "إنشاء حساب",
+    authSubtitle: "تسجيل الدخول للمتابعة إلى سلة المشتريات وإدارة طلباتك",
     namePlaceholder: "الاسم الكامل",
     emailPlaceholder: "البريد الإلكتروني",
     passwordPlaceholder: "كلمة المرور",
@@ -62,16 +143,53 @@ export const translations = {
     loginLink: "سجل الدخول",
     buyer: "زبون",
     seller: "بائع",
-    // البحث
+
+    // 2. حقول البائعين الإضافية
+    storeNamePlaceholder: "اسم المحل أو الشركة التجارية",
+    taxIdPlaceholder: "المعرف الضريبي / الباتينت (Matricule Fiscale)",
+    phonePlaceholder: "رقم الهاتف المهني",
+    sellerRequiredInfo: "معلومات المتجر التجارية الإجبارية",
+    selectAccountType: "حدد نوع الحساب",
+
+    // 3. البحث والمركبات
     placeholderText: "ابحث عن قطعة سيارة OEM...",
     placeholderVin: "أدخل رقم الهيكل (VIN) (17 حرفاً)...",
-    cart: "السلة",
-    steps: { brand: 'الماركة', model: 'الموديل', year: 'السنة', transmission: 'ناقل الحركة', energy: 'الطاقة', variant: 'النسخة' },
-    energyTypes: { energy: 'الطاقة', petrol: 'بنزين', diesel: 'ديزل', electric: 'كهرباء', hybrid: 'هجين' },
-    reset: 'إعادة تعيين',
-    instruction: 'يرجى اختيار:'
-  }
-} as const; // إضافة 'as const' تجعل الأنواع ثابتة ودقيقة جداً
+    reset: "إعادة تعيين",
+    instruction: "يرجى اختيار:",
+    steps: {
+      brand: "الماركة",
+      model: "الموديل",
+      year: "السنة",
+      transmission: "ناقل الحركة",
+      energy: "الطاقة",
+      variant: "النسخة"
+    },
+    energyTypes: {
+      energy: "الطاقة",
+      petrol: "بنزين",
+      diesel: "ديزل",
+      electric: "كهرباء",
+      hybrid: "هجين"
+    },
 
-// هذا النوع سيساعدك في إكمال الكود تلقائياً (Autocomplete) في المكونات
+    // 4. السلة وإتمام الشراء
+    cart: "السلة",
+    cartTitle: "سلة المشتريات",
+    cartEmpty: "سلة المشتريات فارغة",
+    checkoutBtn: "إتمام الشراء",
+    cartCountText: "منتجات في السلة",
+    continueShopping: "مواصلة التسوق",
+
+    // 5. لوحات التحكم والإدارة
+    sellerDashboardTitle: "🛠️ لوحة تحكم البائع والورشات",
+    browseStore: "تصفح متجر القطع",
+    sellerAccessError: "عذراً، هذه اللوحة مخصصة للبائعين المعتمدين فقط.",
+    backToHome: "العودة للرئيسية",
+    adminTitle: "🛡️ لوحة التحكم الإدارية السيادية",
+    adminSubtitle: "إدارة النظام، المستخدمين، الصلاحيات، والرقابة العامة",
+    adminAccessError: "عذراً، هذه الصفحة إدارية بحتة ومخصصة للمشرفين فقط.",
+    emergencyAlert: "⚠️ تم استدعاء بروتوكول الطوارئ السيادي بنجاح!"
+  }
+} as const;
+
 export type TranslationType = typeof translations.fr;

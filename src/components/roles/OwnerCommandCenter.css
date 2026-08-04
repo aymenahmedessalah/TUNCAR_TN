@@ -1,0 +1,182 @@
+/* ==========================================
+   OwnerCommandCenter.css - TUNCAR.TN Sovereign Node
+   ========================================== */
+
+/* تنسيقات غرفة العمليات السيادية */
+.owner-command-center {
+  padding: 30px;
+  color: #f8fafc;
+  direction: rtl;
+  text-align: right;
+  font-family: inherit;
+  background-color: #0b0f19;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* شريط العنوان السيادي */
+.sovereign-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0f172a;
+  padding: 20px 25px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  flex-wrap: wrap;
+  gap: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sovereign-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #f59e0b, #ef4444);
+}
+
+.sovereign-title h1 {
+  margin: 0 0 5px 0;
+  font-size: 1.8rem;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sovereign-title p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* شبكة مؤشرات الأداء (Telemetry Grid) */
+.telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.telemetry-card {
+  background-color: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* ضبط حدود البطاقات لتتوافق بدقة مع اتجاه الـ RTL */
+.telemetry-card.blue { border-right: 4px solid #38bdf8; border-left: 1px solid #334155; }
+.telemetry-card.green { border-right: 4px solid #10b981; border-left: 1px solid #334155; }
+.telemetry-card.yellow { border-right: 4px solid #f59e0b; border-left: 1px solid #334155; }
+.telemetry-card.red { border-right: 4px solid #ef4444; border-left: 1px solid #334155; }
+
+.telemetry-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.telemetry-card-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-family: monospace;
+  color: #ffffff;
+}
+
+.telemetry-card-sub {
+  font-size: 0.8rem;
+  margin-top: 8px;
+}
+
+/* تخطيط القسم الرئيسي */
+.command-main-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 25px;
+}
+
+@media (max-width: 1024px) {
+  .command-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.command-panel {
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* الحركات والتأثيرات البصرية */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* تخصيص مظهر شريط التمرير (Scrollbar) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* تحسين الحقول المنسدلة والعناصر */
+select, textarea, input {
+  text-align: right;
+  direction: rtl;
+}
+
+select {
+  background-image: none;
+}

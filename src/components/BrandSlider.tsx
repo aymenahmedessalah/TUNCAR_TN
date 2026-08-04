@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 
-const brands = ['Volkswagen', 'BMW', 'Mercedes', 'Audi', 'Toyota', 'Ford', 'Renault', 'Peugeot', 'Hyundai', 'Kia', 'Nissan', 'Skoda'];
+const brands = ['Volkswagen', 'BMW', 'Mercedes', 'Audi', 'Toyota', 'Ford', 'Renault', 'Peugeot', 'Hyundai', 'Kia', 'Nissan', 'Skoda','Honda'];
 
 export default function BrandSlider({ onSelect }: { onSelect: (brand: string) => void }) {
   const containerRef = useRef<HTMLDivElement>(null);

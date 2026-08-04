@@ -1,0 +1,83 @@
+/* ==========================================
+   Dashboard.css - TUNCAR.TN Secure Command Node
+   ========================================== */
+
+/* الحركات المتطورة (Animations) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+/* الحاوية الرئيسية للوحة القيادة */
+.command-panel {
+  background-color: #0b1329 !important;
+  border: 1px solid #1e293b !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7) !important;
+  color: #f8fafc !important;
+  font-family: inherit !important;
+  box-sizing: border-box !important;
+}
+
+/* تصميم أزرار التبويبات العامة */
+.command-panel button {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* تأثيرات التمرير الجانبي والبطاقات الفرعية */
+.command-panel .bg-slate-950 {
+  background-color: #060913 !important;
+  border-color: #1e293b !important;
+}
+
+.command-panel .bg-slate-950\/60 {
+  background-color: rgba(6, 9, 19, 0.6) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+/* تخصيص تأثيرات الحواف عند التمرير على البطاقات الإحصائية */
+.command-panel .grid > div {
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.command-panel .grid > div:hover {
+  border-color: #3b82f6 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* تحسين مظهر التاب النشط الخاص بالمورد */
+.command-panel button.bg-purple-500 {
+  background-color: #a855f7 !important;
+  color: #060913 !important;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.4) !important;
+}
+
+/* تحسين مظهر التاب النشط الخاص بالبائع */
+.command-panel button.bg-sky-500 {
+  background-color: #38bdf8 !important;
+  color: #060913 !important;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4) !important;
+}
+
+/* تحسين مظهر تاب الباقات المميزة VIP */
+.command-panel button.bg-amber-500 {
+  background-color: #f59e0b !important;
+  color: #060913 !important;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.4) !important;
+}
+
+/* تخصيص الخطوط الرقمية المونو */
+.command-panel .font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+}

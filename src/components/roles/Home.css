@@ -1,0 +1,151 @@
+/* تنسيقات صفحة Home الرئيسية */
+.home-brands-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  color: #f8fafc;
+}
+
+.home-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0f172a;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid #1e293b;
+  margin-bottom: 2rem;
+}
+
+.brand-logo-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.brand-logo-text span {
+  color: #f59e0b;
+}
+
+.dashboard-redirect-btn {
+  background-color: #f59e0b;
+  color: #020617;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: opacity 0.2s;
+}
+
+.dashboard-redirect-btn:hover {
+  opacity: 0.9;
+}
+
+.hero-section {
+  text-align: center;
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+}
+
+.hero-section h1 {
+  font-size: 2rem;
+  color: #f59e0b;
+  margin-bottom: 0.5rem;
+}
+
+.hero-section p {
+  color: #94a3b8;
+  margin-bottom: 2rem;
+}
+
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.brand-card {
+  background-color: #020617;
+  border: 1px solid #334155;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.brand-card:hover, .brand-card.active {
+  border-color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.05);
+}
+
+.brand-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.models-selection-box {
+  background-color: #020617;
+  border: 1px solid #334155;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  margin-top: 1.5rem;
+  text-align: right;
+}
+
+.models-selection-box h3 {
+  color: #f8fafc;
+  font-size: 1rem;
+}
+
+.models-chips {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.model-chip-btn {
+  background-color: #0f172a;
+  border: 1px solid #f59e0b;
+  color: #f59e0b;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.model-chip-btn:hover {
+  background-color: rgba(245, 158, 11, 0.15);
+}
+
+.features-strip {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+  background-color: #0f172a;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid #1e293b;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
