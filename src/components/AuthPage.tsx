@@ -82,7 +82,11 @@ export default function AuthPage({ initialMode = 'login', usersDb = [], onAuthSu
       <div className="auth-card" style={{ maxWidth: selectedRole === 'seller' && !isLogin ? '500px' : '420px', transition: 'all 0.3s ease' }}>
         <div className="auth-header">
           <h2>{isLogin ? t.loginTitle : t.registerTitle}</h2>
-          <p>{lang === 'ar' ? 'منصة TUNCAR.TN لإدارة السيارات وقطع الغيار' : 'Plateforme TUNCAR.TN'}</p>
+          <p style={{ fontSize: '0.85rem', color: '#94a3b8', marginTop: '4px' }}>
+            {isLogin 
+              ? (lang === 'ar' ? 'الرجاء تسجيل الدخول للمتابعة إلى سلة التسوق وإدارة طلباتك' : 'Connectez-vous pour continuer vers le panier et gérer vos commandes')
+              : (lang === 'ar' ? 'أنشئ حساباً جديداً للبدء في منصة TUNCAR.TN' : 'Créez un nouveau compte pour commencer')}
+          </p>
         </div>
 
         {error && <div className="auth-error">{error}</div>}

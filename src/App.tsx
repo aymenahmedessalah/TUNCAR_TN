@@ -91,10 +91,6 @@ export default function App() {
 
           {(view === 'login' || view === 'login_inline') && (
             <div className="view-wrapper" style={{ maxWidth: '500px', margin: '40px auto', padding: '20px' }}>
-              <div className="auth-header">
-                <h2>{t.loginTitle}</h2>
-                <p>{t.authSubtitle}</p>
-              </div>
               <AuthPage initialMode="login" onAuthSuccess={handleAuthSuccess} />
             </div>
           )}

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
 import { translations } from '../translations';
-import { FaSearch, FaShoppingCart, FaUser, FaLanguage, FaCoins, FaUserPlus, FaSignInAlt, FaUsers } from 'react-icons/fa';
+import { FaSearch, FaShoppingCart, FaUser, FaLanguage, FaCoins, FaUserPlus, FaSignInAlt, FaUsers, FaSignOutAlt } from 'react-icons/fa';
 import { UserProfile } from './UsersManagement'; 
 import './Navbar.css';
 
@@ -62,7 +62,6 @@ export default function Navbar({ setView, cartCount = 0, cartTotal = 0, currentU
     }
   };
 
-  // دالة التوجيه عند النقر على زر المستخدم بناءً على الـ role الخاص به
   const handleUserClick = () => {
     if (!currentUser) {
       setView('login');
@@ -88,10 +87,15 @@ export default function Navbar({ setView, cartCount = 0, cartTotal = 0, currentU
           break;
         case 'user':
         default:
-          setView('profile'); // صفحة الملف الشخصي للمستخدم العادي
+          setView('profile');
           break;
       }
     }
+  };
+
+  const handleLogout = () => {
+    setCurrentUser(null);
+    setView('buyer');
   };
 
   return (
@@ -164,21 +168,22 @@ export default function Navbar({ setView, cartCount = 0, cartTotal = 0, currentU
         </div>
       </div>
 
-      {/* الجانب الأيمن: عربة التسوق وبيانات المستخدم */}
+      {/* الجانب الأيمن: عربة التسوق وبيانات المستخدم وزر الخروج */}
       <div className="right-group">
-        <div className="unified-slot">
+        <div className="unified-slot flex items-center flex-nowrap gap-2">
           
           {currentUser && ['owner', 'super_admin', 'admin1', 'admin2', 'admin3'].includes(currentUser.role) && (
             <>
-              <div className="side-part cursor-pointer flex items-center gap-1.5" onClick={() => setView('users')} title="إدارة المستخدمين">
+              <div className="side-part cursor-pointer flex items-center gap-1.5 shrink-0" onClick={() => setView('users')} title="إدارة المستخدمين">
                 <FaUsers className="text-[#38bdf8]" />
                 <span style={{ fontSize: '0.85rem', fontWeight: '600', color: '#38bdf8' }}>Users</span>
               </div>
-              <div className="divider"></div>
+              <div className="divider shrink-0"></div>
             </>
           )}
 
-          <div className="side-part cursor-pointer" onClick={() => {
+          {/* عربة التسوق */}
+          <div className="side-part cursor-pointer flex items-center gap-2 shrink-0" onClick={() => {
             if (onCartClick) {
               onCartClick();
             } else if (!currentUser) {
@@ -187,20 +192,43 @@ export default function Navbar({ setView, cartCount = 0, cartTotal = 0, currentU
               setView('cart');
             }
           }}>
-            <FaShoppingCart /> 
-            {cartCount > 0 && <span>{cartTotal} {currency}</span>}
+            <FaShoppingCart className="shrink-0" /> 
+            {cartCount > 0 && <span className="whitespace-nowrap">{cartTotal} {currency}</span>}
           </div>
           
-          <div className="divider"></div>
+          <div className="divider shrink-0"></div>
 
           {currentUser ? (
-            <div className="side-part cursor-pointer flex items-center gap-2" onClick={handleUserClick}>
-              <FaUser className="text-[#10b981]" /> 
-              <span>{currentUser.name} ({currentUser.role})</span>
-            </div>
+            <>
+              {/* الفاصل الأول قبل اسم المستخدم */}
+              <div className="divider shrink-0" style={{ height: '16px' }}></div>
+
+              {/* اسم المستخدم الكامل */}
+              <div 
+                className="side-part cursor-pointer flex items-center gap-2 shrink-0" 
+                onClick={handleUserClick}
+              >
+                <FaUser className="text-[#10b981] shrink-0" /> 
+                <span className="whitespace-nowrap font-medium" style={{ maxWidth: 'none' }}>
+                  {currentUser.name}
+                </span>
+              </div>
+
+              {/* الفاصل الثاني بعد اسم المستخدم وقبل زر الخروج */}
+              <div className="divider shrink-0" style={{ height: '16px' }}></div>
+
+              {/* زر الخروج المتوهج بالأحمر */}
+              <div 
+                className="logout-btn shrink-0" 
+                onClick={handleLogout}
+                title={lang === 'ar' ? 'تسجيل الخروج' : 'Déconnexion'}
+              >
+                <FaSignOutAlt />
+              </div>
+            </>
           ) : (
             <div 
-              className="nav-dropdown-wrapper relative" 
+              className="nav-dropdown-wrapper relative shrink-0" 
               onMouseEnter={() => { if (authTimeoutRef.current) clearTimeout(authTimeoutRef.current); setShowAuthMenu(true); setShowLangMenu(false); setShowCurrMenu(false); }}
               onMouseLeave={() => { authTimeoutRef.current = window.setTimeout(() => setShowAuthMenu(false), 200); }}
             >
@@ -224,6 +252,7 @@ export default function Navbar({ setView, cartCount = 0, cartTotal = 0, currentU
               )}
             </div>
           )}
+
         </div>
       </div>
     </nav>
