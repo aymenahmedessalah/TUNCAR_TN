@@ -56,13 +56,6 @@
   box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1) !important;
 }
 
-/* تحسين مظهر التاب النشط الخاص بالمورد */
-.command-panel button.bg-purple-500 {
-  background-color: #a855f7 !important;
-  color: #060913 !important;
-  box-shadow: 0 0 15px rgba(168, 85, 247, 0.4) !important;
-}
-
 /* تحسين مظهر التاب النشط الخاص بالبائع */
 .command-panel button.bg-sky-500 {
   background-color: #38bdf8 !important;

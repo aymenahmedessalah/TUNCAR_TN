@@ -1,0 +1,399 @@
+/* المسار: src/components/auth/AuthPage.css */
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    padding: 16px;
+    background-color: #f8fafc; /* خلفية فاتحة نظيفة وخفيفة */
+}
+
+/* دعم الوضع الداكن التلقائي إذا كانت المنصة تدعمه */
+@media (prefers-color-scheme: dark) {
+    .auth-container {
+        background-color: #0b1329;
+    }
+}
+
+.auth-card {
+    background: #ffffff;
+    padding: 28px 32px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    text-align: start;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+    .auth-card {
+        background: #111b33;
+        border-color: #1e293b;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.auth-header {
+    margin-bottom: 20px;
+    text-align: inherit;
+}
+
+.auth-header h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .auth-header h2 {
+        color: #f8fafc;
+    }
+}
+
+.auth-header p {
+    color: #64748b;
+    font-size: 0.82rem;
+}
+
+/* أزرار التواصل الاجتماعي */
+.social-auth-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 8px;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #334155;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.social-btn:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+}
+
+@media (prefers-color-scheme: dark) {
+    .social-btn {
+        background: #1a2642;
+        border-color: #334155;
+        color: #cbd5e1;
+    }
+    .social-btn:hover {
+        background: #223154;
+        border-color: #475569;
+    }
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 16px 0;
+    color: #94a3b8;
+    font-size: 0.75rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .auth-divider::before,
+    .auth-divider::after {
+        border-bottom-color: #283548;
+    }
+}
+
+.auth-divider span {
+    padding: 0 10px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* اختيار نوع الحساب (Client / Seller) بتصميم خفيف */
+.role-switch-container {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .role-switch-container {
+        background: #0b1329;
+        border-color: #283548;
+    }
+}
+
+.role-label {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.role-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.role-tab {
+    flex: 1;
+    padding: 7px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.role-tab.active {
+    border-color: #0284c7;
+    background: rgba(2, 132, 199, 0.1);
+    color: #0284c7;
+}
+
+@media (prefers-color-scheme: dark) {
+    .role-tab {
+        border-color: #334155;
+        color: #94a3b8;
+    }
+    .role-tab.active {
+        border-color: #38bdf8;
+        background: rgba(56, 189, 248, 0.15);
+        color: #38bdf8;
+    }
+}
+
+/* حقول الإدخال */
+.input-group {
+    display: flex;
+    align-items: center;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 10px 12px;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+@media (prefers-color-scheme: dark) {
+    .input-group {
+        background: #0b1329;
+        border-color: #283548;
+    }
+}
+
+.input-group:focus-within {
+    border-color: #0284c7;
+    box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+    .input-group:focus-within {
+        border-color: #38bdf8;
+        box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.15);
+    }
+}
+
+.input-icon {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.input-group input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #0f172a;
+    font-size: 0.88rem;
+    width: 100%;
+    text-align: start;
+    direction: inherit;
+}
+
+@media (prefers-color-scheme: dark) {
+    .input-group input {
+        color: #f8fafc;
+    }
+}
+
+.input-group input::placeholder {
+    color: #94a3b8;
+}
+
+/* زر إظهار وإخفاء كلمة المرور */
+.password-toggle-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.password-toggle-btn:hover {
+    color: #0284c7;
+}
+
+@media (prefers-color-scheme: dark) {
+    .password-toggle-btn:hover {
+        color: #38bdf8;
+    }
+}
+
+/* الحقول الإضافية للبائع (انسيابية تامة) */
+.seller-extra-fields {
+    background: rgba(2, 132, 199, 0.03);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px dashed #0284c7;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    animation: fadeInSlide 0.25s ease-in-out;
+}
+
+@media (prefers-color-scheme: dark) {
+    .seller-extra-fields {
+        background: rgba(56, 189, 248, 0.03);
+        border-color: #38bdf8;
+    }
+}
+
+.seller-title {
+    font-size: 0.76rem;
+    color: #0284c7;
+    font-weight: 700;
+}
+
+@media (prefers-color-scheme: dark) {
+    .seller-title {
+        color: #38bdf8;
+    }
+}
+
+/* زر الإرسال */
+.auth-submit-btn {
+    width: 100%;
+    padding: 11px;
+    margin-top: 6px;
+    background: #0284c7;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.92rem;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.auth-submit-btn:hover {
+    background: #0369a1;
+}
+
+.auth-submit-btn:active {
+    transform: scale(0.99);
+}
+
+@media (prefers-color-scheme: dark) {
+    .auth-submit-btn {
+        background: #38bdf8;
+        color: #0b1329;
+    }
+    .auth-submit-btn:hover {
+        background: #0ea5e9;
+    }
+}
+
+/* التبديل بين تسجيل الدخول والتسجيل */
+.auth-switch {
+    margin-top: 16px;
+    font-size: 0.82rem;
+    color: #64748b;
+    text-align: center;
+}
+
+.auth-switch span {
+    color: #0284c7;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.auth-switch span:hover {
+    text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+    .auth-switch span {
+        color: #38bdf8;
+    }
+}
+
+.auth-error {
+    background: #fee2e2;
+    border: 1px solid #fca5a5;
+    color: #b91c1c;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    margin-bottom: 14px;
+    text-align: center;
+}
+
+.auth-hint {
+    margin-top: 12px;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-align: center;
+}
+
+/* الحركات الخفيفة */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

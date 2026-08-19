@@ -1,9 +1,11 @@
+// المسار: src/components/common/Navbar.tsx
+
 import React, { useState, useRef } from 'react';
-import { useLanguage } from '../context/LanguageContext';
-import { useTheme } from '../context/ThemeContext';
-import { translations } from '../translations';
+import { useLanguage } from '../../context/LanguageContext';
+import { useTheme } from '../../context/ThemeContext';
+import { translations } from '../../translations';
 import { FaSearch, FaShoppingCart, FaUser, FaLanguage, FaCoins, FaUserPlus, FaSignInAlt, FaUsers, FaSignOutAlt } from 'react-icons/fa';
-import { UserProfile } from './UsersManagement'; 
+import { UserProfile } from '../../types/adminTypes';
 import './Navbar.css';
 
 export interface NavbarProps {
@@ -32,58 +34,25 @@ export default function Navbar({ setView, cartCount = 0, cartTotal = 0, currentU
   const currTimeoutRef = useRef<number | null>(null);
 
   const handleLogoClick = () => {
-    if (!currentUser) {
-      setView('buyer');
-    } else {
-      switch (currentUser.role) {
-        case 'owner':
-          setView('owner_command');
-          break;
-        case 'super_admin':
-        case 'admin1':
-        case 'admin2':
-        case 'admin3':
-          setView('users');
-          break;
-        case 'supplier':
-          setView('dashboard_supplier');
-          break;
-        case 'seller':
-          setView('dashboard_seller');
-          break;
-        case 'inspector':
-          setView('telemetry');
-          break;
-        case 'user':
-        default:
-          setView('buyer');
-          break;
-      }
-    }
+    setView('home');
   };
 
   const handleUserClick = () => {
     if (!currentUser) {
       setView('login');
     } else {
-      switch (currentUser.role) {
+      switch (currentUser.role as string) {
         case 'owner':
-          setView('owner_command');
-          break;
         case 'super_admin':
-        case 'admin1':
-        case 'admin2':
-        case 'admin3':
-          setView('users');
+          setView('command_center');
           break;
-        case 'supplier':
-          setView('dashboard_supplier');
+        case 'catalog_admin':
+        case 'orders_admin':
+        case 'warranty_admin':
+          setView('AdminDashboard');
           break;
         case 'seller':
-          setView('dashboard_seller');
-          break;
-        case 'inspector':
-          setView('telemetry');
+          setView('Dashboard');
           break;
         case 'user':
         default:
@@ -95,7 +64,7 @@ export default function Navbar({ setView, cartCount = 0, cartTotal = 0, currentU
 
   const handleLogout = () => {
     setCurrentUser(null);
-    setView('buyer');
+    setView('home');
   };
 
   return (
@@ -125,8 +94,8 @@ export default function Navbar({ setView, cartCount = 0, cartTotal = 0, currentU
           </div>
           {showLangMenu && (
             <div className="nav-dropdown">
-              {['ar', 'fr', 'en'].filter(l => l !== lang).map(l => (
-                <span key={l} onClick={() => {setLang(l as any); setShowLangMenu(false);}}>{l.toUpperCase()}</span>
+              {(['ar', 'fr', 'en'] as const).filter(l => l !== lang).map(l => (
+                <span key={l} onClick={() => {setLang(l); setShowLangMenu(false);}}>{l.toUpperCase()}</span>
               ))}
             </div>
           )}
@@ -143,8 +112,8 @@ export default function Navbar({ setView, cartCount = 0, cartTotal = 0, currentU
           </div>
           {showCurrMenu && (
             <div className="nav-dropdown">
-              {['TND', 'EUR', 'USD'].filter(c => c !== currency).map(c => (
-                <span key={c} onClick={() => {setCurrency(c as any); setShowCurrMenu(false);}}>{c}</span>
+              {(['TND', 'EUR', 'USD'] as const).filter(c => c !== currency).map(c => (
+                <span key={c} onClick={() => {setCurrency(c); setShowCurrMenu(false);}}>{c}</span>
               ))}
             </div>
           )}
@@ -172,7 +141,7 @@ export default function Navbar({ setView, cartCount = 0, cartTotal = 0, currentU
       <div className="right-group">
         <div className="unified-slot flex items-center flex-nowrap gap-2">
           
-          {currentUser && ['owner', 'super_admin', 'admin1', 'admin2', 'admin3'].includes(currentUser.role) && (
+          {currentUser && (['owner', 'super_admin', 'catalog_admin', 'orders_admin', 'warranty_admin', 'seller', 'user'] as string[]).includes(currentUser.role) && (
             <>
               <div className="side-part cursor-pointer flex items-center gap-1.5 shrink-0" onClick={() => setView('users')} title="إدارة المستخدمين">
                 <FaUsers className="text-[#38bdf8]" />
@@ -200,24 +169,25 @@ export default function Navbar({ setView, cartCount = 0, cartTotal = 0, currentU
 
           {currentUser ? (
             <>
-              {/* الفاصل الأول قبل اسم المستخدم */}
+              {/* الفاصل الأول */}
               <div className="divider shrink-0" style={{ height: '16px' }}></div>
 
-              {/* اسم المستخدم الكامل */}
+              {/* حاوية الاسم فقط في سطر أفقي واحد */}
               <div 
-                className="side-part cursor-pointer flex items-center gap-2 shrink-0" 
+                className="side-part cursor-pointer flex flex-row items-center gap-2 shrink-0 whitespace-nowrap" 
                 onClick={handleUserClick}
+                title="الانتقال إلى لوحة التحكم أو الصفحة الشخصية"
               >
                 <FaUser className="text-[#10b981] shrink-0" /> 
-                <span className="whitespace-nowrap font-medium" style={{ maxWidth: 'none' }}>
-                  {currentUser.name}
-                </span>
+                <div className="user-name-display font-semibold text-cyan-400 text-sm">
+                  {currentUser.name} ({currentUser.role})
+                </div>
               </div>
 
-              {/* الفاصل الثاني بعد اسم المستخدم وقبل زر الخروج */}
+              {/* الفاصل الثاني */}
               <div className="divider shrink-0" style={{ height: '16px' }}></div>
 
-              {/* زر الخروج المتوهج بالأحمر */}
+              {/* زر الخروج */}
               <div 
                 className="logout-btn shrink-0" 
                 onClick={handleLogout}

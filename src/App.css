@@ -1,18 +1,17 @@
 /* App.css */
 :root { 
-    --bg-dark: #0f172a; 
+    --bg-dark: #060a0f; /* تم توحيدها مع خلفية المنصة السيبرانية */
     --cyber-blue: #0ea5e9; 
     --text-main: #ffffff; 
     --border-blue: #1e293b; 
 }
 
-/* التعديل هنا: نربط اتجاه النص باتجاه الـ html */
 body { 
     margin: 0; 
     background: var(--bg-dark); 
     color: var(--text-main); 
     font-family: sans-serif; 
-    direction: inherit; /* سيجبر العناصر على اتباع اتجاه الصفحة */
+    direction: inherit;
 }
 
 .app-container {
@@ -20,7 +19,8 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    direction: inherit; /* ضمان التوريث */
+    direction: inherit;
+    background: var(--bg-dark); /* ضمان عدم ظهور أبيض في الحاوية الرئيسية */
 }
 
 .main-content {
@@ -30,6 +30,7 @@ body {
     flex-direction: column;
     width: 100%;
     box-sizing: border-box;
-    padding: 20px;
-    direction: inherit; /* ضمان التوريث */
+    padding: 0; /* إزالة الـ padding إذا كان يسبب إزاحة في صفحة الـ Auth */
+    direction: inherit;
+    background: var(--bg-dark);
 }

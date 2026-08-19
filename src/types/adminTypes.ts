@@ -1,11 +1,23 @@
-export type UserRole = 'owner' | 'super_admin' | 'catalog_admin' | 'orders_admin' | 'warranty_admin';
+// المسار: src/types/adminTypes.ts
+
+export type UserRole = 
+  | 'owner' 
+  | 'super_admin' 
+  | 'catalog_admin' 
+  | 'orders_admin' 
+  | 'warranty_admin' 
+  | 'client' 
+  | 'seller' 
+  | 'supplier';
 
 export interface UserProfile {
   id: string;
-  username: string;
+  username?: string;
   name: string;
+  email?: string;
   role: UserRole;
-  status: 'active' | 'suspended';
+  tier?: string;
+  status?: 'active' | 'suspended' | 'pending';
 }
 
 export interface SharedOrderTask {

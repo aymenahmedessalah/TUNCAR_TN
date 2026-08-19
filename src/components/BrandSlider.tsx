@@ -4,7 +4,7 @@ const brands = ['Volkswagen', 'BMW', 'Mercedes', 'Audi', 'Toyota', 'Ford', 'Rena
 
 export default function BrandSlider({ onSelect }: { onSelect: (brand: string) => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const requestRef = useRef<number>();
+  const requestRef = useRef<number>(null);
   const isAutoScrolling = useRef(true);
 
   const animate = () => {

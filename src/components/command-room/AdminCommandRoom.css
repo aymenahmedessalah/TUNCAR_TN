@@ -1,0 +1,22 @@
+/* المسار: src/components/admin/AdminCommandRoom.css */
+
+.cmd-container {
+  color: #e2e8f0;
+  font-family: inherit;
+}
+
+/* تنسيق عام لأرقام ونصوص النظام السيبرانية */
+.sys-num {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* تحسين مظهر عناصر التحكم المنسدلة داخل الغرفة */
+.cmd-container select option {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* تأثيرات الانتقال والتمرير للبطاقات */
+.cmd-container .bg-black\/40 {
+  backdrop-filter: blur(8px);
+}

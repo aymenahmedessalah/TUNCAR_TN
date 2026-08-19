@@ -1,8 +1,10 @@
+// المسار: src/components/AuthPage.tsx
+
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 import { FaEnvelope, FaLock, FaUser, FaSignInAlt, FaUserPlus, FaUserTag, FaStore, FaIdCard, FaPhone } from 'react-icons/fa';
-import { UserProfile } from './UsersManagement';
+import { UserProfile } from '../types/adminTypes';
 import './AuthPage.css';
 
 interface AuthPageProps {
@@ -11,7 +13,7 @@ interface AuthPageProps {
   onAuthSuccess: (user: UserProfile) => void;
 }
 
-export default function AuthPage({ initialMode = 'login', usersDb = [], onAuthSuccess }: AuthPageProps) {
+export default function NewAuthPage({ initialMode = 'login', usersDb = [], onAuthSuccess }: AuthPageProps) {
   const { lang } = useLanguage();
   const t = translations[lang] || translations.fr;
   
@@ -20,7 +22,6 @@ export default function AuthPage({ initialMode = 'login', usersDb = [], onAuthSu
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   
-  // حقول إضافية خاصة بالبائع (Vendeur)
   const [storeName, setStoreName] = useState('');
   const [taxId, setTaxId] = useState('');
   const [phone, setPhone] = useState('');
@@ -37,17 +38,15 @@ export default function AuthPage({ initialMode = 'login', usersDb = [], onAuthSu
     if (isLogin) {
       if (!trimmedEmail) return;
 
-      // البحث في قاعدة البيانات المتاحة
-      let foundUser = usersDb.find(u => u.email.toLowerCase() === trimmedEmail);
+      let foundUser = usersDb.find(u => u.email?.toLowerCase() === trimmedEmail);
 
-      // توليد ذكي للحسابات الإدارية أو السريعة في حال عدم تواجدها مسبقاً
       if (!foundUser) {
         if (trimmedEmail.includes('owner') || trimmedEmail.includes('admin')) {
-          foundUser = { id: 1, name: 'Aymen Essalah (Owner)', email: trimmedEmail, role: 'owner', tier: 'black', status: 'active' };
+          foundUser = { id: '1', name: 'Aymen Essalah (Owner)', email: trimmedEmail, role: 'owner', tier: 'black', status: 'active' };
         } else if (trimmedEmail.includes('seller')) {
-          foundUser = { id: 4, name: 'Mecano Parts Partner', email: trimmedEmail, role: 'seller', tier: 'silver', status: 'active' };
+          foundUser = { id: '4', name: 'Mecano Parts Partner', email: trimmedEmail, role: 'seller', tier: 'silver', status: 'active' };
         } else {
-          foundUser = { id: Date.now(), name: trimmedEmail.split('@')[0], email: trimmedEmail, role: 'client', tier: 'classic', status: 'active' };
+          foundUser = { id: Date.now().toString(), name: trimmedEmail.split('@')[0], email: trimmedEmail, role: 'client', tier: 'classic', status: 'active' };
         }
       }
 
@@ -58,14 +57,13 @@ export default function AuthPage({ initialMode = 'login', usersDb = [], onAuthSu
         return;
       }
 
-      // التحقق من تعبئة معلومات البائع كاملة عند اختيار Vendeur
       if (selectedRole === 'seller' && (!storeName || !taxId || !phone)) {
         setError(lang === 'ar' ? 'الرجاء إدخال معلومات المتجر والمعرف الضريبي ورقم الهاتف كاملة للبائع' : 'Veuillez remplir toutes les informations professionnelles pour le vendeur');
         return;
       }
       
       const newUser: UserProfile = {
-        id: Number(Date.now().toString().slice(-3)),
+        id: Date.now().toString(),
         name: selectedRole === 'seller' ? `${name} (${storeName})` : name,
         email: trimmedEmail,
         role: selectedRole, 
@@ -94,7 +92,6 @@ export default function AuthPage({ initialMode = 'login', usersDb = [], onAuthSu
         <form onSubmit={handleSubmit} className="auth-form">
           {!isLogin && (
             <>
-              {/* اختيار نوع الحساب */}
               <div className="input-group" style={{ flexDirection: 'column', alignItems: 'stretch', background: '#0b1329', padding: '10px 15px', borderRadius: '8px', border: '1px solid #334155' }}>
                 <label style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <FaUserTag /> {t.selectAccountType}
@@ -149,7 +146,6 @@ export default function AuthPage({ initialMode = 'login', usersDb = [], onAuthSu
                 />
               </div>
 
-              {/* الحقول الإضافية للبائع */}
               {selectedRole === 'seller' && (
                 <div className="seller-extra-fields" style={{ background: 'rgba(56, 189, 248, 0.05)', padding: '12px', borderRadius: '8px', border: '1px dashed #38bdf8', display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   <div style={{ fontSize: '0.8rem', color: '#38bdf8', fontWeight: 'bold' }}>
@@ -222,8 +218,9 @@ export default function AuthPage({ initialMode = 'login', usersDb = [], onAuthSu
         </form>
 
         <div className="auth-switch">
-          <p>
-            <span onClick={() => setIsLogin(!isLogin)} style={{ cursor: 'pointer', color: '#38bdf8' }}>
+          <p style={{ margin: 0, color: 'var(--text-secondary, #94a3b8)' }}>
+            {isLogin ? (lang === 'ar' ? 'ليس لديك حساب؟ ' : "Vous n'avez pas de compte ? ") : (lang === 'ar' ? 'لديك حساب بالفعل؟ ' : "Vous avez déjà un compte ? ")}
+            <span onClick={() => setIsLogin(!isLogin)} style={{ cursor: 'pointer', color: '#38bdf8', fontWeight: 'bold' }}>
               {isLogin ? t.registerLink : t.loginLink}
             </span>
           </p>

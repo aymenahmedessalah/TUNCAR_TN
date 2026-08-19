@@ -1,40 +1,125 @@
-.auth-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh;
-    padding: 20px;
+/* المسار: src/components/auth/AuthPage.css */
+
+/* تثبيت خلفية الصفحة بالكامل لتكون داكنة صريحة */
+body, #root {
+    background-color: #060a0f !important;
+    color: #f8fafc !important;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
 }
 
+/* عزل الـ auth-container وجعله يملأ الشاشة بالكامل وتجاوز أي قيود خارجية */
+.auth-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: #060a0f !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 9999 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    padding: 20px !important;
+    box-sizing: border-box;
+}
+
+.auth-container[dir="rtl"] { 
+    direction: rtl !important; 
+    text-align: right !important;
+}
+
+.auth-container[dir="ltr"] { 
+    direction: ltr !important; 
+    text-align: left !important;
+}
+
+/* بطاقة المصادقة باللون الداكن السيبراني */
 .auth-card {
-    background: #1e293b;
-    padding: 30px 40px;
+    background-color: #1e293b !important;
+    padding: 35px 30px;
     border-radius: 16px;
     width: 100%;
-    max-width: 450px;
-    text-align: start; /* يتكيف تلقائياً مع اليمين واليسار */
-    border: 1px solid var(--border-blue, #334155);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-    transition: max-width 0.3s ease;
+    max-width: 420px;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+    box-sizing: border-box;
+    color: #f8fafc !important;
 }
 
+/* تنسيق الهيدر */
 .auth-header {
-    margin-bottom: 24px;
-    text-align: inherit;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .auth-header h2 {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #f8fafc;
-    margin-bottom: 6px;
+    color: #f8fafc !important;
+    margin: 0 0 6px 0;
 }
 
 .auth-header p {
-    color: #94a3b8;
+    color: #94a3b8 !important;
     font-size: 0.85rem;
+    margin: 0;
 }
 
+/* أزرار المصادقة الاجتماعية (Google, Microsoft, Facebook) */
+.social-auth-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.social-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    background-color: #0b1329 !important;
+    border: 1px solid #334155 !important;
+    border-radius: 8px;
+    color: #f8fafc !important;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.social-btn:hover {
+    background-color: #334155 !important;
+    border-color: #38bdf8 !important;
+}
+
+/* فاصل أو (Divider) */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 16px 0;
+    color: #64748b;
+    font-size: 0.8rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #334155;
+}
+
+.auth-divider span {
+    padding: 0 10px;
+}
+
+/* نموذج الإدخال */
 .auth-form {
     display: flex;
     flex-direction: column;
@@ -44,23 +129,22 @@
 .input-group {
     display: flex;
     align-items: center;
-    background: #0b1329;
-    border: 1px solid var(--border-blue, #334155);
+    background-color: #0b1329 !important;
+    border: 1px solid #334155 !important;
     border-radius: 8px;
-    padding: 12px 14px;
+    padding: 10px 14px;
     gap: 12px;
     width: 100%;
     box-sizing: border-box;
-    position: relative;
 }
 
 .input-group:focus-within {
-    border-color: #38bdf8;
+    border-color: #38bdf8 !important;
     box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
 }
 
 .input-icon {
-    color: #94a3b8;
+    color: #94a3b8 !important;
     font-size: 1rem;
     flex-shrink: 0;
 }
@@ -69,43 +153,41 @@
     background: transparent;
     border: none;
     outline: none;
-    color: white;
+    color: #ffffff !important;
     font-size: 0.95rem;
     width: 100%;
-    text-align: start; /* محاذاة النص تتوافق مع اتجاه اللغة */
-    direction: inherit;
 }
 
 .input-group input::placeholder {
-    color: #64748b;
+    color: #64748b !important;
 }
 
-/* تنسيق الحقول الإضافية للبائع (Vendeur) */
-.seller-extra-fields {
-    background: rgba(56, 189, 248, 0.05);
-    padding: 14px;
-    border-radius: 8px;
-    border: 1px dashed #38bdf8;
+/* زر إظهار/إخفاء كلمة المرور */
+.password-toggle-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 0;
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    text-align: start; /* مرن حسب اللغة */
+    align-items: center;
 }
 
-.seller-extra-fields .input-group {
-    margin-bottom: 0 !important;
+.password-toggle-btn:hover {
+    color: #38bdf8;
 }
 
+/* زر الإرسال */
 .auth-submit-btn {
     width: 100%;
     padding: 12px;
-    margin-top: 10px;
-    background: var(--cyber-blue, #38bdf8);
+    margin-top: 6px;
+    background-color: #0ea5e9 !important;
     border: none;
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    color: #0b1329;
+    color: #0b1329 !important;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -115,57 +197,46 @@
 }
 
 .auth-submit-btn:hover {
-    background: #0ea5e9;
+    background-color: #38bdf8 !important;
 }
 
+/* التبديل بين التسجيل والدخول */
 .auth-switch {
-    margin-top: 20px;
+    margin-top: 18px;
     font-size: 0.9rem;
-    color: #94a3b8;
+    color: #94a3b8 !important;
     text-align: center;
 }
 
 .auth-switch span {
-    color: var(--cyber-blue, #38bdf8);
+    color: #38bdf8 !important;
     font-weight: bold;
     cursor: pointer;
 }
 
+/* التلميح السريع في الأسفل */
+.auth-hint {
+    margin-top: 14px;
+    font-size: 0.75rem;
+    color: #64748b;
+    text-align: center;
+}
+
+.auth-hint code {
+    background-color: #0b1329;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #38bdf8;
+}
+
+/* رسالة الخطأ */
 .auth-error {
     background: rgba(239, 68, 68, 0.15);
     border: 1px solid rgba(239, 68, 68, 0.3);
-    color: #f87171;
+    color: #f87171 !important;
     padding: 10px;
     border-radius: 6px;
     font-size: 0.85rem;
-    margin-bottom: 15px;
+    margin-bottom: 14px;
     text-align: center;
-}
-
-/* تنسيق اختيار الدور */
-.role-selector {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 30px;
-}
-
-.role-tag {
-    padding: 30px;
-    border: 2px solid #334155;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-align: center;
-}
-
-.role-tag.buyer:hover {
-    border-color: #22c55e;
-    color: #22c55e;
-}
-
-.role-tag.seller:hover {
-    border-color: #a855f7;
-    color: #a855f7;
 }

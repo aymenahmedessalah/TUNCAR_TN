@@ -1,48 +1,78 @@
-import { getUsersDb, saveUserToDb, UserRecord } from './db';
+// المسار: src/services/authService.ts
 
-const CURRENT_SESSION_KEY = 'tuncar_active_session_v1';
+import { UserProfile } from '../types/adminTypes';
+import { usersdb } from '../data/usersDb'; 
 
-// دالة تسجيل الدخول الحقيقية
-export const loginUser = (email: string): UserRecord => {
+const CURRENT_SESSION_KEY = 'cyber_core_active_session_v1';
+const USERS_DB_KEY = 'cyber_core_users_db';
+
+// جلب قاعدة البيانات (من LocalStorage أو الاعتماد على usersdb الحقيقية كأصل)
+export const getUsersDb = (): UserProfile[] => {
+  const localDb = localStorage.getItem(USERS_DB_KEY);
+  if (!localDb) {
+    localStorage.setItem(USERS_DB_KEY, JSON.stringify(usersdb));
+    return usersdb;
+  }
+  try {
+    return JSON.parse(localDb);
+  } catch {
+    return usersdb;
+  }
+};
+
+// حفظ مستخدم جديد وتحديث LocalStorage
+export const saveUserToDb = (userData: Omit<UserProfile, 'id'>): UserProfile => {
   const users = getUsersDb();
-  const user = users.find(u => u.email.toLowerCase() === email.trim().toLowerCase());
+  const newUser: UserProfile = {
+    id: Date.now().toString(),
+    ...userData,
+  };
+  users.push(newUser);
+  localStorage.setItem(USERS_DB_KEY, JSON.stringify(users));
+  return newUser;
+};
+
+// تسجيل الدخول بالـ username
+export const loginUser = (username: string): UserProfile => {
+  const users = getUsersDb();
+  const user = users.find(u => u.username.toLowerCase() === username.trim().toLowerCase());
   
   if (!user) {
-    throw new Error('البريد الإلكتروني غير موجود في قاعدة البيانات الحقيقية.');
+    throw new Error('اسم المستخدم غير موجود في قاعدة بيانات النظام.');
   }
 
   if (user.status === 'suspended') {
-    throw new Error('هذا الحساب معطل حالياً من قبل الإدارة.');
+    throw new Error('هذا الحساب معطل حالياً من قبل الإدارة العليا.');
   }
 
-  // حفظ الجلسة النشطة محلياً
   localStorage.setItem(CURRENT_SESSION_KEY, JSON.stringify(user));
   return user;
 };
 
-// دالة تسجيل مستخدم جديد حقيقي (مثل تسجيل البائعين أو العملاء)
+// تسجيل مستخدم جديد
 export const registerUser = (userData: {
+  username: string;
   name: string;
-  email: string;
-  role: 'client' | 'seller';
-  tier?: string;
-  storeName?: string;
-  taxId?: string;
-  phone?: string;
-}): UserRecord => {
+  role: UserProfile['role'];
+}): UserProfile => {
+  const users = getUsersDb();
+  const exists = users.some(u => u.username.toLowerCase() === userData.username.trim().toLowerCase());
+  
+  if (exists) {
+    throw new Error('اسم المستخدم مستخدم مسبقاً.');
+  }
+
   const newUser = saveUserToDb({
     ...userData,
-    tier: userData.tier || 'classic',
-    status: userData.role === 'seller' ? 'pending' : 'active' // البائعون يحتاجون موافقة، والعملاء مفعلون مباشرة
+    status: 'active'
   });
 
-  // تسجيل الدخول تلقائياً بعد التسجيل الناجح
   localStorage.setItem(CURRENT_SESSION_KEY, JSON.stringify(newUser));
   return newUser;
 };
 
-// استرجاع المستخدم الحالي النشط في الجلسة
-export const getCurrentSession = (): UserRecord | null => {
+// استرجاع الجلسة الحالية
+export const getCurrentSession = (): UserProfile | null => {
   const session = localStorage.getItem(CURRENT_SESSION_KEY);
   if (!session) return null;
   try {
@@ -52,7 +82,7 @@ export const getCurrentSession = (): UserRecord | null => {
   }
 };
 
-// إنهاء الجلسة (تسجيل الخروج)
+// تسجيل الخروج
 export const logoutUser = (): void => {
   localStorage.removeItem(CURRENT_SESSION_KEY);
 };
